@@ -118,23 +118,34 @@ function configurarTela(){
     centralizarFilhoVerticalHorizontal($("#home"), $("#textohome"));
     centralizarFilhoHorizontal($("#home"), $("#btnscrool"));
 
-    if ($(window).width() > 992) {
+    if ($(window).width() >= 992)
+    {
         centralizarVertical($("#propositoText"), $("#imgProposito"));
         centralizarVertical($("#terceirizarTexto"),$("#terceirizarFoto"));
         centralizarVertical($("#atendimentoText"),$("#atendimentoImg"));
-      //  centralizarVertical($("#footerTexto"),$("#footerFoto"));
-        
-    } else {
+        //  centralizarVertical($("#footerTexto"),$("#footerFoto"));
+    }
+    else if( ($(window).width() < 992 ) && ($(window).width() > 768 )  ) {
         $("#propositoText").css({"padding-top": 0});
+         $("#terceirizado").css({"margin-top": 0});
+         $("#terceirizarTexto").css({"padding-top": 200});
+    } 
+    else if ($(window).width() <= 768)
+    {
+        $("#terceirizarTexto").css({"padding-top": 200});
+        $("#terceirizado").css({"margin-top": -170});
+        $("#footer").css({"margin-top": -150});
+        $(".footerTexto").css({"margin-top": 0});
+        
     }
 
     $('#prime').css({height: $('#prime-container')[0].clientHeight+150});
-    
+
     $("#btnscrool").css({top: $("#home")[0].clientHeight -150 });
 
     backgroundGridNumeros();
     lojinha();
-    
+
 }
 
 
@@ -218,7 +229,7 @@ function neonPosicaoLojinha(element, orientacao)
         {
             element.css({display: "none" });
         }else{
-             element.css({display: "block" });
+            element.css({display: "block" });
         }
 
         var marginLeft = getRndInteger((largura*0.90) , (largura+65) ); 
@@ -257,24 +268,24 @@ function getRndInteger(min, max) {
 
 
 
- autoPlayYouTubeModal();
+autoPlayYouTubeModal();
 
-  //FUNCTION TO GET AND AUTO PLAY YOUTUBE VIDEO FROM DATATAG
-  function autoPlayYouTubeModal() {
-      var trigger = $("body").find('[data-toggle="modal"]');
-      trigger.click(function () {
-          var theModal = $(this).data("target"),
-              videoSRC = $(this).attr("data-theVideo"),
-              videoSRCauto = videoSRC + "?autoplay=1";
-          $(theModal + ' iframe').attr('src', videoSRCauto);
-            var alturaFrame = $(window).height()/1.5;
-          $(".frame").css({height: alturaFrame+"px" });  
-          
-          $(theModal + ' button.close').click(function () {
-              $(theModal + ' iframe').attr('src', videoSRC);
-          });
-      });
-  }
+//FUNCTION TO GET AND AUTO PLAY YOUTUBE VIDEO FROM DATATAG
+function autoPlayYouTubeModal() {
+    var trigger = $("body").find('[data-toggle="modal"]');
+    trigger.click(function () {
+        var theModal = $(this).data("target"),
+            videoSRC = $(this).attr("data-theVideo"),
+            videoSRCauto = videoSRC + "?autoplay=1";
+        $(theModal + ' iframe').attr('src', videoSRCauto);
+        var alturaFrame = $(window).height()/1.5;
+        $(".frame").css({height: alturaFrame+"px" });  
+
+        $(theModal + ' button.close').click(function () {
+            $(theModal + ' iframe').attr('src', videoSRC);
+        });
+    });
+}
 
 
 
@@ -283,7 +294,7 @@ function getRndInteger(min, max) {
 
 
 window.onload = function() {
- //   setBG();   
+    //   setBG();   
     navbarBackground();
     setTextPrincipal();
     configurarTela();
@@ -298,7 +309,7 @@ window.onresize = function(){
 }
 
 
- 
+
 
 
 
